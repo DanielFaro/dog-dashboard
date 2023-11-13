@@ -9,7 +9,7 @@ export const columns = [
   { label: 'Life Span (yrs)', accessor: 'life_span', filterable: false },
   { label: 'Breed Group', accessor: 'breed_group', filterable: true },
   { label: 'Bred For', accessor: 'bred_for', filterable: true },
-  { label: 'Temperament', accessor: 'temperament', filterable: true },
+  // { label: 'Temperament', accessor: 'temperament', filterable: true },
   { label: 'Image', accessor: 'image', filterable: false },
 ];
 
@@ -72,7 +72,7 @@ export default function Table() {
       // setSortedDogList(sorted);
     }
   };
-
+  console.log('in table ', filteredDogList, sortedDogList);
   let dogList = searchTerm ? filteredDogList : sortedDogList;
   const generateRows = () => {
     return dogList.map(
@@ -93,9 +93,12 @@ export default function Table() {
           <div className="cell">{life_span}</div>
           <div className="cell">{breed_group}</div>
           <div className="bred">{bred_for}</div>
-          <div className="temperament">{temperament}</div>
-          <div className="cell">
-            <img src={image.url} alt={name} />
+          {/* <div className="temperament">{temperament}</div> */}
+          <div className="tooltip">
+            🐶
+            <span className="tooltiptext">
+              <img src={image.url} alt={name} />
+            </span>
           </div>
         </>
       )

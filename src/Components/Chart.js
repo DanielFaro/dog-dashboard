@@ -25,7 +25,7 @@ const StyledChart = styled.div`
 
   @media (max-width: 480px) {
     .chart {
-      width: 95%;
+      width: 100%;
     }
   }
 `;
@@ -36,9 +36,21 @@ const Chart = memo(function Chart({ filteredDogList }) {
   const options = {
     responsive: true,
     maintainAspectRatio: false,
+    elements: {
+      point: {
+        radius: 1.5,
+      },
+    },
     scales: {
       x: {
+        border: {
+          color: '#ffffff',
+        },
+        // grid: {
+        //   color: '#ffffff',
+        // },
         ticks: {
+          color: '#ffffff',
           major: {
             enabled: true,
           },
@@ -50,14 +62,19 @@ const Chart = memo(function Chart({ filteredDogList }) {
         title: {
           display: true,
           text: 'Weight (lbs)',
+          color: '#ffffff',
           font: {
-            size: 16,
+            size: 14,
             family: 'monospace',
           },
         },
       },
       y: {
+        border: {
+          color: '#ffffff',
+        },
         ticks: {
+          color: '#ffffff',
           major: {
             enabled: true,
           },
@@ -69,8 +86,9 @@ const Chart = memo(function Chart({ filteredDogList }) {
         title: {
           display: true,
           text: 'Life Span (yrs)',
+          color: '#ffffff',
           font: {
-            size: 16,
+            size: 14,
             family: 'monospace',
           },
         },
@@ -86,9 +104,9 @@ const Chart = memo(function Chart({ filteredDogList }) {
             x: dog.weight.imperial,
             y: dog.life_span,
           })),
-          backgroundColor: ['rgba(75,192,192,1)'],
-          borderColor: 'black',
-          borderWidth: 2,
+          backgroundColor: ['#ffffff'],
+          borderColor: '#0000FF',
+          borderWidth: 0,
         },
       ],
     };

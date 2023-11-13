@@ -34,3 +34,6 @@ export const useDogStore = create((set, get) => ({
 // need case where user sorts by life=_span e.g., then filters,
 // then changes filter and searches again, the second result should
 // be sorted from master list that has been sorted by field and filtered.
+// or just empty out search value after search, when they click reset, set
+// searchterm to empty, if they enter something new and search, just setSearchTerm
+// show a message saying results for searchValue

@@ -1,6 +1,7 @@
 .tableWrapper {
   text-align: center;
   height: 400px;
+  width: 80%;
   overflow-y: scroll;
   overflow-x: scroll;
 }
@@ -9,13 +10,15 @@
   display: grid;
   font-size: 14px;
   background-color: blue;
-  grid-template-columns: 1fr 70px 70px 70px 1fr 2fr 1fr 1fr;
+  grid-template-columns: repeat(7, minmax(70px, 1fr));
+  /* grid-template-columns: 140px 70px 70px 70px 70px 1fr 50px; */
   place-content: center;
-  grid-auto-rows: minmax(60px, auto);
+  grid-auto-rows: minmax(50px, auto);
   grid-gap: 2px;
+  text-align: left;
 }
 
-.header {
+.tooltip .header {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -35,13 +38,46 @@
 
 .cell,
 .temperament,
-.bred {
+.bred,
+.tooltip {
   background-color: darkblue;
+}
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+.tooltiptext {
+  visibility: hidden;
+  width: 110px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  /* border-radius: 6px; */
+  /* padding: 5px 0; */
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+/* .tooltip .tooltiptext::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: black transparent transparent transparent;
+} */
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  cursor: pointer;
 }
 
 img {
-  height: 20px;
-  width: 20px;
+  height: 110px;
+  width: 110px;
 }
 
 .temperament {
@@ -55,23 +91,38 @@ img {
   text-overflow: ellipsis;
 }
 
-@media (min-width: 480px) and (max-width: 768px) {
+@media (min-width: 480px) and (max-width: 1080px) {
+  img,
+  .tooltiptext {
+    width: 40px;
+    height: 40px;
+  }
   .tableWrapper,
   .headers {
     font-size: 12px;
   }
-  .tableWrapper {
-    grid-template-columns: 1fr 50px 50px 50px 1fr 1fr 1fr 1fr;
+  .table {
+    grid-template-columns: repeat(7, minmax(50px, 1fr));
   }
 }
 
 @media (max-width: 480px) {
   .tableWrapper,
+  .table,
   .headers {
     font-size: 10px;
   }
 
   .tableWrapper {
-    grid-template-columns: 1fr 40px 40px 40px 1fr 60px 1fr 1fr;
+    width: 100%;
+  }
+
+  .table {
+    grid-template-columns: repeat(7, minmax(40px, 1fr));
+  }
+  img,
+  .tooltiptext {
+    width: 40px;
+    height: 40px;
   }
 }

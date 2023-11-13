@@ -114,7 +114,7 @@ export default function SearchBar() {
     setSearchTerm('');
     setFilteredDogList(masterDogList);
     // make separate set fnx for reset sortedDogList
-    setSortedDogList([]);
+    setSortedDogList(masterDogList);
   };
 
   return (
