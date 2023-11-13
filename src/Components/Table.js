@@ -1,6 +1,7 @@
 import './Table.css';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useDogStore } from '../DogStore';
+import { ReactComponent as PawIcon } from './assets/PawIcon.svg';
 
 export const columns = [
   { label: 'Name', accessor: 'name', filterable: true },
@@ -14,6 +15,7 @@ export const columns = [
 ];
 
 export default function Table() {
+  const windowWidth = useRef(window.innerWidth);
   const { setModifiedDogList } = useDogStore((state) => state);
   const { setFilteredDogList } = useDogStore((state) => state);
   const { setSortedDogList } = useDogStore((state) => state);
@@ -94,12 +96,18 @@ export default function Table() {
           <div className="cell">{breed_group}</div>
           <div className="bred">{bred_for}</div>
           {/* <div className="temperament">{temperament}</div> */}
-          <div className="tooltip">
-            🐶
-            <span className="tooltiptext">
+          {windowWidth.current > 480 ? (
+            <div className="tooltip">
+              <PawIcon />
+              <span className="tooltiptext">
+                <img src={image.url} alt={name} />
+              </span>
+            </div>
+          ) : (
+            <div className="cell">
               <img src={image.url} alt={name} />
-            </span>
-          </div>
+            </div>
+          )}
         </>
       )
     );

@@ -46,9 +46,10 @@ const Chart = memo(function Chart({ filteredDogList }) {
         border: {
           color: '#ffffff',
         },
-        // grid: {
-        //   color: '#ffffff',
-        // },
+        grid: {
+          color: '#0000FF',
+          lineWidth: 0.5,
+        },
         ticks: {
           color: '#ffffff',
           major: {
@@ -72,6 +73,10 @@ const Chart = memo(function Chart({ filteredDogList }) {
       y: {
         border: {
           color: '#ffffff',
+        },
+        grid: {
+          color: '#0000FF',
+          lineWidth: 0.5,
         },
         ticks: {
           color: '#ffffff',
