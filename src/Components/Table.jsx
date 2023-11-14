@@ -21,17 +21,15 @@ export default function Table() {
   const { sortedDogList } = useDogStore((state) => state);
   const { searchTerm } = useDogStore((state) => state);
   const { sortOrder } = useDogStore((state) => state);
-  const { resetSortOrder } = useDogStore((state) => state);
   const { setSortOrder } = useDogStore((state) => state);
   const [sortField, setSortField] = useState('');
-  // const [order, setOrder] = useState('asc');
 
   const handleSortingChange = (columnHeader) => {
     const newSortOrder =
       columnHeader === sortField && sortOrder === 'asc' ? 'desc' : 'asc';
     setSortField(columnHeader);
     setSortOrder(newSortOrder);
-    columnHeader !== 'image' && handleSorting(columnHeader, sortOrder);
+    columnHeader !== 'image' && handleSorting(columnHeader, newSortOrder);
   };
 
   const handleSorting = (sortField, sortOrder) => {
