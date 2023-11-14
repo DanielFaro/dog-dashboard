@@ -6,8 +6,8 @@ describe('Checking all DOM elements appear and submit button works', () => {
     render(<SearchBar />);
 
     const form = screen.getByRole('form');
-    const input = screen.getByPlaceholderText('Search...');
-    const searchButton = screen.getByText('Search');
+    const input = screen.getByPlaceholderText('Labrado...');
+    const searchButton = screen.getByText('Filter');
     const resetButton = screen.getByText('Reset');
     expect(form).toBeInTheDocument();
     expect(input).toBeInTheDocument();
@@ -19,8 +19,8 @@ describe('Checking all DOM elements appear and submit button works', () => {
     const handleOnSubmitMock = jest.fn();
     screen.getByRole('form').onsubmit = handleOnSubmitMock;
 
-    const input = screen.getByPlaceholderText('Search...');
-    const searchButton = screen.getByText('Search');
+    const input = screen.getByPlaceholderText('Labrado...');
+    const searchButton = screen.getByText('Filter');
 
     // Enter into search input
     fireEvent.change(input, {

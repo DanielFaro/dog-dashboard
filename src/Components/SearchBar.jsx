@@ -105,11 +105,11 @@ export default function SearchBar() {
       <form onSubmit={submitForm} name="searchForm">
         <StyledSearchBar
           type="text"
-          placeholder="Search..."
+          placeholder="Labrado..."
           value={searchValue}
           onChange={(e) => setSearchValue(e.target.value)}
         />
-        <Btn type="submit">Search</Btn>
+        <Btn type="submit">Filter</Btn>
         <Btn onClick={onReset()}>Reset</Btn>
       </form>
     </SearchWrapper>
