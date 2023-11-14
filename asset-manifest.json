@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/dog-dashboard/static/css/main.a39d2ac5.css",
-    "main.js": "/dog-dashboard/static/js/main.6dcf1663.js",
+    "main.js": "/dog-dashboard/static/js/main.efaed34c.js",
     "static/js/787.ad4dec61.chunk.js": "/dog-dashboard/static/js/787.ad4dec61.chunk.js",
     "static/media/PawIcon.svg": "/dog-dashboard/static/media/PawIcon.f20fffa997937068ddbe215c6e9733f8.svg",
     "index.html": "/dog-dashboard/index.html",
     "main.a39d2ac5.css.map": "/dog-dashboard/static/css/main.a39d2ac5.css.map",
-    "main.6dcf1663.js.map": "/dog-dashboard/static/js/main.6dcf1663.js.map",
+    "main.efaed34c.js.map": "/dog-dashboard/static/js/main.efaed34c.js.map",
     "787.ad4dec61.chunk.js.map": "/dog-dashboard/static/js/787.ad4dec61.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.a39d2ac5.css",
-    "static/js/main.6dcf1663.js"
+    "static/js/main.efaed34c.js"
   ]
 }
