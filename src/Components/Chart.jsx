@@ -14,6 +14,7 @@ const ChartWrapper = styled.div`
   height: 400px;
   display: flex;
   justify-content: center;
+  margin-top: 20px;
 `;
 const StyledChart = styled.div`
   width: 80%;
@@ -44,14 +45,14 @@ const Chart = memo(function Chart({ filteredDogList }) {
     scales: {
       x: {
         border: {
-          color: '#ffffff',
+          color: '#e2e8f0',
         },
         grid: {
           color: '#0000FF',
           lineWidth: 0.5,
         },
         ticks: {
-          color: '#ffffff',
+          color: '#e2e8f0',
           major: {
             enabled: true,
           },
@@ -63,7 +64,7 @@ const Chart = memo(function Chart({ filteredDogList }) {
         title: {
           display: true,
           text: 'Weight (lbs)',
-          color: '#ffffff',
+          color: '#e2e8f0',
           font: {
             size: 14,
             family: 'monospace',
@@ -72,14 +73,14 @@ const Chart = memo(function Chart({ filteredDogList }) {
       },
       y: {
         border: {
-          color: '#ffffff',
+          color: '#e2e8f0',
         },
         grid: {
           color: '#0000FF',
           lineWidth: 0.5,
         },
         ticks: {
-          color: '#ffffff',
+          color: '#e2e8f0',
           major: {
             enabled: true,
           },
@@ -91,7 +92,7 @@ const Chart = memo(function Chart({ filteredDogList }) {
         title: {
           display: true,
           text: 'Life Span (yrs)',
-          color: '#ffffff',
+          color: '#e2e8f0',
           font: {
             size: 14,
             family: 'monospace',
@@ -120,9 +121,9 @@ const Chart = memo(function Chart({ filteredDogList }) {
 
   return (
     createChartData && (
-      <ChartWrapper>
-        <StyledChart>
-          <Scatter data={createChartData} options={options} />
+      <ChartWrapper name="chartwrapper">
+        <StyledChart name="styledchart">
+          <Scatter data={createChartData} options={options} name="scatter" />
         </StyledChart>
       </ChartWrapper>
     )

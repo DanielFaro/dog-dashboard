@@ -8,14 +8,12 @@
 
 .table {
   display: grid;
-  font-size: 14px;
+  font-size: 12px;
   background-color: blue;
   grid-template-columns: repeat(7, minmax(70px, 1fr));
-  /* grid-template-columns: 140px 70px 70px 70px 70px 1fr 50px; */
   place-content: center;
   grid-auto-rows: minmax(50px, auto);
   grid-gap: 2px;
-  /* text-align: left; */
 }
 
 .tooltip,
@@ -51,25 +49,12 @@
   visibility: hidden;
   width: 110px;
   background-color: black;
-  color: #fff;
+  color: #e2e8f0;
   text-align: center;
-  /* border-radius: 6px; */
-  /* padding: 5px 0; */
-
   /* Position the tooltip */
   position: absolute;
   z-index: 1;
 }
-/* .tooltip .tooltiptext::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  margin-left: -5px;
-  border-width: 5px;
-  border-style: solid;
-  border-color: black transparent transparent transparent;
-} */
 
 .tooltip:hover .tooltiptext {
   visibility: visible;
@@ -111,15 +96,19 @@ img {
   .tableWrapper,
   .table,
   .headers {
-    font-size: 10px;
+    font-size: 9px;
   }
-
+  .table {
+    grid-template-columns: 60px;
+  }
   .tableWrapper {
     width: 100%;
   }
 
   .table {
-    grid-template-columns: repeat(7, minmax(40px, 1fr));
+    grid-template-columns:
+      70px minmax(40px, 1fr) minmax(40px, 1fr) minmax(40px, 1fr)
+      minmax(40px, 1fr) minmax(40px, 1fr) minmax(40px, 1fr);
   }
   img,
   .tooltiptext {

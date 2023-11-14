@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useDogStore } from '../DogStore';
 import styled from 'styled-components';
-import { columns } from './Table.js';
+import { columns } from './Table';
 
 const SearchWrapper = styled.div`
   display: flex;
@@ -9,7 +9,7 @@ const SearchWrapper = styled.div`
   align-items: center;
 `;
 
-const StyledBtn = styled.button`
+const Btn = styled.button`
   background-color: #0a192f;
   border: 1px solid white;
   color: white;
@@ -30,22 +30,20 @@ const StyledBtn = styled.button`
 
 const StyledSearchBar = styled.input`
   background-color: #0a192f;
-  border: 1px solid white;
-  color: white;
+  border: 1px solid #e2e8f0;
+  color: #e2e8f0;
   font-family: 'monospace';
   margin-right: 5px;
 `;
 
 export default function SearchBar() {
   const [searchValue, setSearchValue] = useState('');
-  const { modifiedDogList } = useDogStore((state) => state);
   const { setSearchTerm } = useDogStore((state) => state);
-  const { setModifiedDogList } = useDogStore((state) => state);
   const { setFilteredDogList } = useDogStore((state) => state);
   const { setSortedDogList } = useDogStore((state) => state);
   const { masterDogList } = useDogStore((state) => state);
-  const { filteredDogList } = useDogStore((state) => state);
   const { sortedDogList } = useDogStore((state) => state);
+  const { resetSortOrder } = useDogStore((state) => state);
 
   const filterDogs = () => {
     const testRowVal = (key, value) => {
@@ -62,26 +60,12 @@ export default function SearchBar() {
         }
       }
     };
-    // can reset searchon submit maybe reset every time
-    // maybe if always sort on master list, then filter based on sorted list.
-    // if user searches, filter will take in sorted list and update the filtered list.
-    //
 
-    // user searches, then filteredList is update
-    // user sorts, filtered list is sorted and set to new filterlist
-    // user removes a search character and searches, filter fnx.
-    // takes the current sortedlist, which is everything, and applies new filter, setting filter list
-    // case: user filters, then sorts, then removes one filter character and searches
-
-    // user sorts, then filters, should remain sorted
-    /*If user had filtered, then removes all search value and presses search
-    i.e. same as resetting searchValue */
-    if (!searchValue && modifiedDogList.length > 0) return masterDogList;
+    if (!searchValue && sortedDogList.length > 0) return masterDogList;
 
     // create new filteredDogs Set
     const filteredDogs = new Set();
     // iterate over all dogs
-    // console.log('modifiedDogList in search ==', modifiedDogList);
     for (const currentDog of sortedDogList) {
       for (const { accessor, filterable } of columns) {
         // only filter over string values, i.e. filterable columns
@@ -104,7 +88,6 @@ export default function SearchBar() {
 
   const submitForm = (e) => {
     e.preventDefault();
-    console.log('filteredDogs after search ==', filterDogs());
     setSearchTerm(searchValue);
     setFilteredDogList(filterDogs());
   };
@@ -113,21 +96,21 @@ export default function SearchBar() {
     setSearchValue('');
     setSearchTerm('');
     setFilteredDogList(masterDogList);
-    // make separate set fnx for reset sortedDogList
     setSortedDogList(masterDogList);
+    resetSortOrder();
   };
 
   return (
     <SearchWrapper>
-      <form onSubmit={submitForm}>
+      <form onSubmit={submitForm} name="searchForm">
         <StyledSearchBar
           type="text"
           placeholder="Search..."
           value={searchValue}
           onChange={(e) => setSearchValue(e.target.value)}
         />
-        <StyledBtn type="submit">Search</StyledBtn>
-        <StyledBtn onClick={onReset()}>Reset</StyledBtn>
+        <Btn type="submit">Search</Btn>
+        <Btn onClick={onReset()}>Reset</Btn>
       </form>
     </SearchWrapper>
   );
