@@ -86,7 +86,7 @@ function App() {
     <Dashboard className="App">
       <StyledHeader>
         <h2>Dog Breed Finder</h2>
-        <h4>Find your favorite dog breed!</h4>
+        <h4>Search your favorite breeds and visualize their life!</h4>
       </StyledHeader>
 
       <Chart filteredDogList={filteredDogList} />
