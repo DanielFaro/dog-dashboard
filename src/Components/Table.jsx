@@ -71,57 +71,67 @@ export default function Table() {
   const generateRows = () => {
     return dogList.map(
       ({ name, weight, height, life_span, breed_group, bred_for, image }) => (
-        <>
-          <div className="cell">{name}</div>
-          <div className="cell">{weight.imperial}</div>
-          <div className="cell">{height.imperial}</div>
-          <div className="cell">{life_span}</div>
-          <div className="cell">{breed_group}</div>
-          <div className="bred">{bred_for}</div>
+        <tr>
+          <td className="name">{name}</td>
+          <td>{weight.imperial}</td>
+          <td>{height.imperial}</td>
+          <td>{life_span}</td>
+          <td>{breed_group}</td>
+          <td>
+            <div className="bred">
+              <div className="ellipses">{bred_for}</div>
+            </div>
+          </td>
           {windowWidth.current > 480 ? (
-            <div className="tooltip">
-              <PawIcon />
-              <span className="tooltiptext">
-                <img src={image.url} alt={name} />
-              </span>
-            </div>
+            <td>
+              <div className="tooltip">
+                <PawIcon />
+                <span className="tooltiptext">
+                  <img src={image.url} alt={name} />
+                </span>
+              </div>
+            </td>
           ) : (
-            <div className="cell">
+            <td>
               <img src={image.url} alt={name} />
-            </div>
+            </td>
           )}
-        </>
+        </tr>
       )
     );
   };
 
   return (
     <section className="tableWrapper">
-      <div className="table">
-        {columns.map(({ label, accessor }) => (
-          <div
-            key={accessor}
-            data-testid="headerWrapper"
-            onClick={() => handleSortingChange(accessor)}
-          >
-            <div className="header">
-              <div className="headerLabel">{label}</div>
-              <div className="headerArrow">
-                {accessor !== 'image' &&
-                accessor === sortField &&
-                sortOrder === 'desc'
-                  ? '🔽'
-                  : accessor !== 'image' &&
+      <table>
+        <thead>
+          <tr>
+            {columns.map(({ label, accessor }) => (
+              <th
+                key={accessor}
+                data-testid="headerWrapper"
+                onClick={() => handleSortingChange(accessor)}
+              >
+                <div className="header">
+                  <div className="headerLabel">{label}</div>
+                  <div className="headerArrow">
+                    {accessor !== 'image' &&
                     accessor === sortField &&
-                    sortOrder === 'asc'
-                  ? '🔼'
-                  : ''}
-              </div>
-            </div>
-          </div>
-        ))}
-        {generateRows()}
-      </div>
+                    sortOrder === 'desc'
+                      ? '🔽'
+                      : accessor !== 'image' &&
+                        accessor === sortField &&
+                        sortOrder === 'asc'
+                      ? '🔼'
+                      : ''}
+                  </div>
+                </div>
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>{generateRows()}</tbody>
+      </table>
     </section>
   );
 }

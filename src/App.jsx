@@ -11,7 +11,7 @@ const Dashboard = styled.div`
   display: grid;
   grid-template-rows: 1fr 4fr 1fr 10fr;
   overflow: hidden;
-  place-content: center;
+  /* place-content: center; */
   text-align: center;
   width: 100%;
   height: 100vh;

@@ -10,24 +10,22 @@ import { Scatter } from 'react-chartjs-2';
 import { useMemo, memo } from 'react';
 
 const ChartWrapper = styled.div`
-  width: 100%;
   height: 400px;
   display: flex;
   justify-content: center;
   margin-top: 20px;
 `;
 const StyledChart = styled.div`
-  width: 80%;
-  @media (min-width: 480px) and (max-width: 768px) {
-    .chart {
-      width: 90%;
-    }
+  width: 60%;
+  @media (max-width: 1080px) {
+    width: 70%;
+  }
+  @media (max-width: 768px) {
+    width: 80%;
   }
 
   @media (max-width: 480px) {
-    .chart {
-      width: 100%;
-    }
+    width: 90%;
   }
 `;
 
