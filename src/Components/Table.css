@@ -3,6 +3,7 @@
   height: 415px;
   font-size: 12px;
   overflow-y: auto;
+  overflow-x: hidden;
 }
 
 table {
