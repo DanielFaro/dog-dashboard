@@ -14,6 +14,10 @@ const ChartWrapper = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 20px;
+  @media (max-width: 480px) {
+    height: 360px;
+    margin: 0;
+  }
 `;
 const StyledChart = styled.div`
   width: 60%;

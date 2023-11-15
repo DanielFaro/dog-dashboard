@@ -109,10 +109,15 @@ img {
 @media (max-width: 480px) {
   .tableWrapper {
     font-size: 9px;
+    height: 380px;
   }
   .bred {
     width: 100px;
     height: 100%;
+  }
+  thead,
+  th {
+    height: 25px;
   }
   tr {
     height: 40px;
