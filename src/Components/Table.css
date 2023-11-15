@@ -59,9 +59,8 @@ td {
   grid-column: 1/2;
 }
 
-.headerLabel,
-.headerArrow {
-  &:hover {
+tr > th:not(:last-child) {
+  .headerLabel:hover {
     cursor: pointer;
     transform: scale(1.1);
     transition: transform 0.5s;
