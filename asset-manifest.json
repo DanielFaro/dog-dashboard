@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/dog-dashboard/static/css/main.a39d2ac5.css",
-    "main.js": "/dog-dashboard/static/js/main.fb59df8c.js",
+    "main.css": "/dog-dashboard/static/css/main.e11f97e1.css",
+    "main.js": "/dog-dashboard/static/js/main.df710355.js",
     "static/js/787.ad4dec61.chunk.js": "/dog-dashboard/static/js/787.ad4dec61.chunk.js",
     "static/media/PawIcon.svg": "/dog-dashboard/static/media/PawIcon.f20fffa997937068ddbe215c6e9733f8.svg",
     "index.html": "/dog-dashboard/index.html",
-    "main.a39d2ac5.css.map": "/dog-dashboard/static/css/main.a39d2ac5.css.map",
-    "main.fb59df8c.js.map": "/dog-dashboard/static/js/main.fb59df8c.js.map",
+    "main.e11f97e1.css.map": "/dog-dashboard/static/css/main.e11f97e1.css.map",
+    "main.df710355.js.map": "/dog-dashboard/static/js/main.df710355.js.map",
     "787.ad4dec61.chunk.js.map": "/dog-dashboard/static/js/787.ad4dec61.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.a39d2ac5.css",
-    "static/js/main.fb59df8c.js"
+    "static/css/main.e11f97e1.css",
+    "static/js/main.df710355.js"
   ]
 }
