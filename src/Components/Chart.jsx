@@ -6,6 +6,7 @@ import {
   LineElement,
   Tooltip,
   Legend,
+  LineController,
 } from 'chart.js';
 import { Scatter } from 'react-chartjs-2';
 import { useMemo, memo } from 'react';
@@ -35,7 +36,14 @@ const StyledChart = styled.div`
   }
 `;
 
-ChartJS.register(LinearScale, PointElement, LineElement, Tooltip, Legend);
+ChartJS.register(
+  LinearScale,
+  PointElement,
+  LineElement,
+  Tooltip,
+  Legend,
+  LineController
+);
 
 const Chart = memo(function Chart({ filteredDogList }) {
   const { setHighlightedDogs } = useDogStore((state) => state);
