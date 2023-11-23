@@ -22,7 +22,11 @@ export default function Table() {
   const { searchTerm } = useDogStore((state) => state);
   const { sortOrder } = useDogStore((state) => state);
   const { setSortOrder } = useDogStore((state) => state);
+  const { highlightedDogs } = useDogStore((state) => state);
   const [sortField, setSortField] = useState('');
+
+  // maybe on tooltip click, filter data again to show selected dogs
+  // otherwise, highlight rows, but then empty select on reset, or another click
 
   const handleSortingChange = (columnHeader) => {
     const newSortOrder =
@@ -51,8 +55,9 @@ export default function Table() {
             based on Intl.Collator object. Setting numeric to true allows numeric 
             collation such that e.g. "2" < "10"
         */
+        // Do I need to change secondterm to string as well
         return (
-          firstTerm.toString().localeCompare(secondTerm, 'en', {
+          firstTerm.toString().localeCompare(secondTerm.toString(), 'en', {
             numeric: true,
           }) * (sortOrder === 'asc' ? 1 : -1)
         );
@@ -68,10 +73,11 @@ export default function Table() {
   };
 
   let dogList = searchTerm ? filteredDogList : sortedDogList;
+
   const generateRows = () => {
     return dogList.map(
       ({ name, weight, height, life_span, breed_group, bred_for, image }) => (
-        <tr>
+        <tr className={highlightedDogs.indexOf(name) > -1 ? 'highlighted' : ''}>
           <td className="name">{name}</td>
           <td>{weight.imperial}</td>
           <td>{height.imperial}</td>

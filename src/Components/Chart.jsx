@@ -9,6 +9,7 @@ import {
 } from 'chart.js';
 import { Scatter } from 'react-chartjs-2';
 import { useMemo, memo } from 'react';
+import { useDogStore } from '../DogStore';
 
 const ChartWrapper = styled.div`
   height: 400px;
@@ -37,7 +38,14 @@ const StyledChart = styled.div`
 ChartJS.register(LinearScale, PointElement, LineElement, Tooltip, Legend);
 
 const Chart = memo(function Chart({ filteredDogList }) {
+  const { setHighlightedDogs } = useDogStore((state) => state);
+  const removeSpaces = (arr) => arr.map((el, i) => el.trim());
   const options = {
+    onClick: (e) => {
+      return setHighlightedDogs(
+        removeSpaces(e.chart.tooltip.title[0].split(','))
+      );
+    },
     responsive: true,
     maintainAspectRatio: false,
     elements: {
@@ -45,17 +53,58 @@ const Chart = memo(function Chart({ filteredDogList }) {
         radius: 1.5,
       },
     },
+    // plugins: {
+    //   legend: {
+    //     display: true,
+    //     responsive: true,
+    //     position: 'top',
+    //     labels: {
+    //       color: '#e2e8f0',
+    //       boxWidth: 36,
+    //       padding: 10,
+    //     },
+    //   },
+    // },
     plugins: {
-      legend: {
-        display: true,
-        responsive: true,
-        position: 'top',
-        labels: {
-          color: '#e2e8f0',
-          boxWidth: 36,
-          padding: 10,
+      tooltip: {
+        callbacks: {
+          title: function (tooltipItems) {
+            // console.log('tooltipItems ==', tooltipItems);
+            let title = '';
+
+            tooltipItems.forEach((tooltipItem) => {
+              if (tooltipItem.dataset.label !== 'average') {
+                // console.log('222 ==', tooltipItem);
+                return (title +=
+                  filteredDogList[tooltipItem.dataIndex].name +
+                  `${tooltipItems.length > 1 ? ', ' : ''}`);
+              }
+              return (title = 'Avg');
+            });
+
+            return title;
+          },
+          label: function (tooltipItem) {
+            let dataLabel = '';
+
+            if (tooltipItem.dataset.label !== 'average') {
+              return (dataLabel += `${tooltipItem.parsed.x}lbs ${tooltipItem.parsed.y}yrs`);
+            }
+
+            return dataLabel;
+          },
         },
       },
+      // legend: {
+      //   // display: true,
+      //   responsive: true,
+      //   position: 'top',
+      //   labels: {
+      //     color: '#e2e8f0',
+      //     boxWidth: 36,
+      //     padding: 10,
+      //   },
+      // },
     },
 
     scales: {

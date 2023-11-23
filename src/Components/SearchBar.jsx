@@ -16,6 +16,7 @@ const Btn = styled.button`
   font-family: 'monospace';
   margin: 0px 5px;
   padding: 5px;
+  border-radius: 5px;
 
   &:hover {
     cursor: pointer;
@@ -34,6 +35,10 @@ const StyledSearchBar = styled.input`
   color: #e2e8f0;
   font-family: 'monospace';
   margin-right: 5px;
+  padding: 5px;
+  min-width: 120px;
+  width: 20vw;
+  border-radius: 5px;
 `;
 
 export default function SearchBar() {
@@ -44,6 +49,7 @@ export default function SearchBar() {
   const { masterDogList } = useDogStore((state) => state);
   const { sortedDogList } = useDogStore((state) => state);
   const { resetSortOrder } = useDogStore((state) => state);
+  const { setHighlightedDogs } = useDogStore((state) => state);
 
   const filterDogs = () => {
     const testRowVal = (key, value) => {
@@ -98,6 +104,7 @@ export default function SearchBar() {
     setFilteredDogList(masterDogList);
     setSortedDogList(masterDogList);
     resetSortOrder();
+    setHighlightedDogs(['']);
   };
 
   return (

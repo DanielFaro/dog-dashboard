@@ -6,6 +6,9 @@ export const useDogStore = create((set) => ({
   filteredDogList: [],
   searchTerm: '',
   sortOrder: '',
+  highlightedDogs: [''],
+  setHighlightedDogs: (newHighlightedDogs) =>
+    set(() => ({ highlightedDogs: newHighlightedDogs })),
   setSortOrder: (newSortOrder) => set(() => ({ sortOrder: newSortOrder })),
   resetSortOrder: () => set(() => ({ sortOrder: '' })),
   setSearchTerm: (newTerm) => set(() => ({ searchTerm: newTerm })),
