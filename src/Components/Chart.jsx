@@ -5,6 +5,7 @@ import {
   PointElement,
   LineElement,
   Tooltip,
+  Legend,
 } from 'chart.js';
 import { Scatter } from 'react-chartjs-2';
 import { useMemo, memo } from 'react';
@@ -33,7 +34,7 @@ const StyledChart = styled.div`
   }
 `;
 
-ChartJS.register(LinearScale, PointElement, LineElement, Tooltip);
+ChartJS.register(LinearScale, PointElement, LineElement, Tooltip, Legend);
 
 const Chart = memo(function Chart({ filteredDogList }) {
   const options = {
@@ -44,6 +45,19 @@ const Chart = memo(function Chart({ filteredDogList }) {
         radius: 1.5,
       },
     },
+    plugins: {
+      legend: {
+        display: true,
+        responsive: true,
+        position: 'top',
+        labels: {
+          color: '#e2e8f0',
+          boxWidth: 36,
+          padding: 10,
+        },
+      },
+    },
+
     scales: {
       x: {
         border: {
@@ -104,10 +118,45 @@ const Chart = memo(function Chart({ filteredDogList }) {
     },
   };
 
+  const calcAvgs = (arr) => {
+    let xTot = 0;
+    let yTot = 0;
+    let count = 0;
+
+    arr.forEach((dog, idx) => {
+      xTot += dog.weight.imperial;
+      yTot += dog.life_span;
+      count++;
+    });
+    return { xAvg: xTot / count, yAvg: yTot / count };
+  };
+  const { xAvg, yAvg } = calcAvgs(filteredDogList);
+
+  const firstTermSum = filteredDogList.reduce((acc, { weight, life_span }) => {
+    let xDiff = weight.imperial - xAvg;
+    let yDiff = life_span - yAvg;
+    return acc + xDiff * yDiff;
+  }, 0);
+
+  const secondTermSum = filteredDogList.reduce(
+    (acc, { weight }) =>
+      (weight.imperial - xAvg) * (weight.imperial - xAvg) + acc,
+    0
+  );
+
+  const slope = firstTermSum / secondTermSum;
+  const yIntercept = yAvg - slope * xAvg;
+  const yAt200Lb = 200 * slope + yIntercept;
+  const regressionData = [
+    { x: 0, y: yIntercept },
+    { x: 200, y: yAt200Lb },
+  ];
+
   const createChartData = useMemo(() => {
     const chartData = {
       datasets: [
         {
+          label: 'breed',
           data: filteredDogList.map((dog) => ({
             x: dog.weight.imperial,
             y: dog.life_span,
@@ -115,6 +164,15 @@ const Chart = memo(function Chart({ filteredDogList }) {
           backgroundColor: ['#ffffff'],
           borderColor: '#0000FF',
           borderWidth: 0,
+        },
+        {
+          type: 'line',
+          label: 'average',
+          backgroundColor: 'red',
+          data: regressionData,
+          borderColor: 'orange',
+          borderWidth: 1,
+          borderDash: [6, 6],
         },
       ],
     };
