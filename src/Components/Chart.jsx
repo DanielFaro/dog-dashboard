@@ -225,7 +225,6 @@ const Chart = memo(function Chart({ filteredDogList }) {
         {
           type: 'line',
           label: 'average',
-          backgroundColor: 'red',
           data: regressionData,
           borderColor: 'orange',
           borderWidth: 1,
